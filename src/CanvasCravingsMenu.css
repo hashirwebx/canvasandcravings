@@ -1,0 +1,365 @@
+/* ------------------------------------------------------------------ */
+/*  Lenis recommended baseline (matches lenis/dist/lenis.css)          */
+/* ------------------------------------------------------------------ */
+html.lenis,
+html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-stopped { overflow: hidden; }
+.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+.lenis.lenis-smooth iframe { pointer-events: none; }
+
+/* ------------------------------------------------------------------ */
+/*  Root + tokens                                                      */
+/* ------------------------------------------------------------------ */
+.ccm-root {
+  --green: #0f3d1e;
+  --cream: #f5edd8;
+  --orange: #e8792e;
+
+  background: var(--green);
+  color: var(--cream);
+  font-family: "Space Grotesk", sans-serif;
+  overflow-x: hidden;
+  position: relative;
+  cursor: auto;
+}
+/* entrance: page slides up from below on mount; .ccm-in releases the
+   transform so fixed children (cursor/progress/bar) anchor to the viewport */
+.ccm-root { transform: translateY(100%); }
+.ccm-root.ccm-in { transform: none; }
+@media (hover: hover) and (pointer: fine) {
+  .ccm-root,
+  .ccm-root a,
+  .ccm-root button,
+  .ccm-root [data-cursor] { cursor: none; }
+}
+.ccm-root * { box-sizing: border-box; }
+.ccm-root a { color: inherit; text-decoration: none; }
+.ccm-root button { font: inherit; color: inherit; background: none; border: none; padding: 0; }
+.ccm-root ::selection { background: var(--orange); color: var(--green); }
+
+.ccm-wrap { max-width: 1340px; margin: 0 auto; padding: 0 48px; }
+
+/* film grain */
+.ccm-grain {
+  position: fixed; inset: 0; z-index: 300;
+  pointer-events: none; opacity: 0.06; mix-blend-mode: overlay;
+}
+
+/* ------------------------------------------------------------------ */
+/*  Custom cursor (carried over from homepage)                         */
+/* ------------------------------------------------------------------ */
+.ccm-root .cc-cur {
+  position: fixed; top: 0; left: 0;
+  width: 10px; height: 10px; border-radius: 50%;
+  background: var(--orange);
+  pointer-events: none; z-index: 9999;
+  translate: -50% -50%;
+}
+.ccm-root .cc-cur-ring {
+  position: fixed; top: 0; left: 0;
+  width: 44px; height: 44px; border-radius: 50%;
+  border: 1px solid rgba(245, 237, 216, 0.45);
+  background: transparent;
+  pointer-events: none; z-index: 9998;
+  translate: -50% -50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 9px; font-weight: 700; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--green);
+  opacity: 0;
+  transition: width 0.3s ease, height 0.3s ease, background-color 0.3s ease,
+    border-color 0.3s ease, opacity 0.25s ease;
+}
+.ccm-root .cc-cur-ring.cc-on {
+  width: 92px; height: 92px;
+  background: var(--orange); border-color: var(--orange);
+}
+@media (pointer: coarse) {
+  .ccm-root .cc-cur,
+  .ccm-root .cc-cur-ring { display: none; }
+}
+
+/* ------------------------------------------------------------------ */
+/*  Scroll progress line (left edge)                                   */
+/* ------------------------------------------------------------------ */
+.ccm-prog {
+  position: fixed; left: 0; top: 0; bottom: 0; z-index: 700;
+  width: 2px;
+  background: var(--orange);
+  transform-origin: top center;
+  transform: scaleY(0);
+  pointer-events: none;
+}
+@media (pointer: coarse) {
+  .ccm-prog { display: none; }
+}
+
+/* ------------------------------------------------------------------ */
+/*  Header                                                             */
+/* ------------------------------------------------------------------ */
+.ccm-head { padding: 130px 0 70px; position: relative; }
+.ccm-top {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 0 48px; margin-bottom: 60px;
+}
+.ccm-mark {
+  font-family: "Bagel Fat One"; font-size: 20px;
+  transition: color 0.3s ease;
+}
+.ccm-mark:hover { color: var(--orange); }
+.ccm-home {
+  font-size: 12px; font-weight: 600; text-transform: uppercase;
+  letter-spacing: 0.16em; opacity: 0.7;
+  transition: opacity 0.25s ease, color 0.25s ease;
+}
+.ccm-home:hover { opacity: 1; color: var(--orange); }
+
+.ccm-eyebrow {
+  font-size: 12px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.28em; color: var(--orange); margin-bottom: 26px;
+}
+.ccm-title {
+  font-family: "Bagel Fat One"; font-weight: 400;
+  font-size: clamp(44px, 6.5vw, 96px);
+  line-height: 1; max-width: 900px;
+}
+.ccm-meta {
+  margin-top: 30px;
+  font-size: 12.5px; font-weight: 600; text-transform: uppercase;
+  letter-spacing: 0.16em; color: rgba(245, 237, 216, 0.55);
+}
+
+/* ------------------------------------------------------------------ */
+/*  Sticky category nav                                                */
+/* ------------------------------------------------------------------ */
+.ccm-nav {
+  position: sticky; top: 0; z-index: 450;
+  display: flex; align-items: center; gap: 6px;
+  padding: 14px 48px;
+  overflow-x: auto; scrollbar-width: none;
+  background: rgba(15, 61, 30, 0.88);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(245, 237, 216, 0.12);
+}
+.ccm-nav::-webkit-scrollbar { display: none; }
+.ccm-pill {
+  position: relative;
+  flex-shrink: 0; white-space: nowrap;
+  padding: 9px 16px; border-radius: 999px;
+  font-size: 12.5px; font-weight: 600; text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: rgba(245, 237, 216, 0.72);
+  transition: color 0.3s ease;
+}
+.ccm-pill::after {
+  content: "";
+  position: absolute; left: 14px; right: 14px; bottom: 3px;
+  height: 2px; border-radius: 2px;
+  background: var(--orange);
+  transform: scaleX(0);
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.ccm-pill:hover { color: var(--orange); }
+.ccm-pill.ccm-on { color: var(--orange); }
+.ccm-pill.ccm-on::after { transform: scaleX(1); }
+
+/* ------------------------------------------------------------------ */
+/*  Category sections                                                  */
+/* ------------------------------------------------------------------ */
+.ccm-sec { padding: 110px 0 90px; transition: background-color 0.3s ease; }
+.ccm-sec.ccm-green { background: var(--green); color: var(--cream); }
+.ccm-sec.ccm-cream { background: var(--cream); color: var(--green); }
+
+.ccm-sec-head {
+  display: flex; align-items: center; gap: 20px; flex-wrap: wrap;
+  margin-bottom: 42px;
+}
+.ccm-dot {
+  width: 14px; height: 14px; border-radius: 50%;
+  background: var(--orange);
+  flex-shrink: 0;
+  box-shadow: 0 0 0 4px rgba(232, 121, 46, 0.15);
+}
+.ccm-cat {
+  font-family: "Bagel Fat One"; font-weight: 400;
+  font-size: clamp(52px, 7vw, 110px);
+  line-height: 0.95;
+}
+.ccm-count {
+  font-size: 11px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.2em; color: var(--orange);
+  border: 1px solid currentColor;
+  padding: 7px 14px; border-radius: 999px;
+  opacity: 0.85;
+}
+
+/* ------------------------------------------------------------------ */
+/*  Editorial rows (dot-leader layout)                                 */
+/* ------------------------------------------------------------------ */
+.ccm-rows { display: flex; flex-direction: column; }
+.ccm-row {
+  padding: 30px 0;
+  border-bottom: 1px solid rgba(245, 237, 216, 0.16);
+}
+.ccm-sec.ccm-cream .ccm-row { border-color: rgba(15, 61, 30, 0.16); }
+.ccm-row-main { display: flex; flex-direction: column; gap: 8px; width: 100%; min-width: 0; }
+
+/* one baseline line: name ———————— price (right-aligned via the leader) */
+.ccm-row-line {
+  display: flex; align-items: baseline;
+  width: 100%;
+}
+.ccm-name {
+  display: flex; align-items: center; gap: 10px;
+  font-family: "Bagel Fat One"; font-weight: 400;
+  font-size: clamp(22px, 2.4vw, 34px);
+  line-height: 1.06;
+  white-space: nowrap;
+  transition: color 0.3s ease;
+}
+.ccm-leader {
+  flex: 1; min-width: 26px;
+  margin: 0 16px;
+  border-bottom: 2px dotted currentColor;
+  opacity: 0.3;
+  transform: translateY(-7px);
+  transition: opacity 0.3s ease, border-color 0.3s ease;
+}
+.ccm-row:hover .ccm-name { color: var(--orange); }
+.ccm-row:hover .ccm-leader { opacity: 0.65; border-color: var(--orange); }
+.ccm-chili { width: 15px; height: 15px; color: var(--orange); flex-shrink: 0; }
+.ccm-chef {
+  font-family: "Space Grotesk";
+  font-size: 10.5px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.1em; color: var(--orange);
+  background: rgba(232, 121, 46, 0.14);
+  border-radius: 999px; padding: 3px 9px;
+}
+.ccm-price {
+  font-size: clamp(17px, 1.7vw, 21px); font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--orange);
+  white-space: nowrap;
+  transform-origin: right center;
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+.ccm-row:hover .ccm-price { transform: scale(1.08); }
+.ccm-row-sub {
+  display: flex; align-items: baseline;
+  gap: 18px; flex-wrap: wrap;
+}
+.ccm-row-sub .ccm-note { margin-left: auto; }
+.ccm-desc {
+  font-size: 13.5px; font-weight: 500; line-height: 1.5;
+  opacity: 0.6; max-width: 540px;
+}
+.ccm-note {
+  font-size: 10.5px; font-weight: 600; text-transform: uppercase;
+  letter-spacing: 0.14em; opacity: 0.55;
+}
+
+/* pizza size toggle */
+.ccm-sizes { display: flex; gap: 6px; }
+.ccm-size {
+  font-size: 11px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.12em;
+  border: 1px solid currentColor; border-radius: 999px;
+  padding: 5px 13px; opacity: 0.55;
+  transition: opacity 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+}
+.ccm-size:hover { opacity: 0.85; }
+.ccm-size.ccm-on { opacity: 1; color: var(--orange); border-color: var(--orange); }
+
+/* ------------------------------------------------------------------ */
+/*  The Bar — dense 4-column grid (reference layout)                   */
+/* ------------------------------------------------------------------ */
+.ccm-bar-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 48px 44px;
+}
+.ccm-bar-cat {
+  font-family: "Bagel Fat One"; font-weight: 400;
+  font-size: 22px; color: var(--orange);
+  margin-bottom: 18px; line-height: 1.05;
+}
+.ccm-bar-item {
+  display: flex; align-items: baseline;
+  gap: 0; padding: 9px 0;
+  border-bottom: 1px solid rgba(245, 237, 216, 0.16);
+  font-size: 14px; font-weight: 500;
+}
+.ccm-sec.ccm-cream .ccm-bar-item { border-color: rgba(15, 61, 30, 0.16); }
+.ccm-bar-item .ccm-leader { transform: translateY(-4px); margin: 0 10px; }
+.ccm-bar-name { white-space: nowrap; transition: color 0.25s ease; }
+.ccm-bar-item:hover .ccm-bar-name { color: var(--orange); }
+.ccm-bar-item:hover .ccm-leader { opacity: 0.65; border-color: var(--orange); }
+.ccm-bar-price {
+  font-variant-numeric: tabular-nums; font-weight: 600;
+  opacity: 0.85; white-space: nowrap; flex-shrink: 0;
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.ccm-bar-item:hover .ccm-bar-price { transform: scale(1.08); }
+
+/* ------------------------------------------------------------------ */
+/*  Sticky bottom order bar                                            */
+/* ------------------------------------------------------------------ */
+.ccm-bar {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 500;
+  display: flex; justify-content: space-between; align-items: center;
+  gap: 20px;
+  padding: 14px 26px;
+  background: var(--cream); color: var(--green);
+  border-top: 1px solid rgba(15, 61, 30, 0.15);
+  box-shadow: 0 -18px 50px rgba(10, 27, 15, 0.28);
+  transform: translateY(115%);
+  will-change: transform;
+}
+.ccm-bar-note {
+  font-size: 12px; font-weight: 600; text-transform: uppercase;
+  letter-spacing: 0.14em; opacity: 0.6;
+}
+.ccm-bar-actions { display: flex; gap: 12px; }
+.ccm-bar-btn {
+  font-size: 12.5px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 13px 24px; border-radius: 999px;
+  transition: transform 0.3s ease, background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+.ccm-bar-primary { background: var(--orange); color: var(--green); }
+.ccm-bar-primary:hover { transform: translateY(-2px); }
+.ccm-bar-ghost { border: 1.5px solid rgba(15, 61, 30, 0.4); }
+.ccm-bar-ghost:hover { border-color: var(--green); transform: translateY(-2px); }
+
+/* ------------------------------------------------------------------ */
+/*  Responsive                                                         */
+/* ------------------------------------------------------------------ */
+@media (max-width: 1100px) {
+  .ccm-bar-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 820px) {
+  .ccm-wrap { padding: 0 22px; }
+  .ccm-top { padding: 0 22px; margin-bottom: 48px; }
+  .ccm-head { padding: 110px 0 56px; }
+  .ccm-nav { padding: 12px 14px; }
+  .ccm-sec { padding: 84px 0 70px; }
+  .ccm-row { padding: 24px 0; }
+  .ccm-leader { margin: 0 10px; }
+  .ccm-bar { padding: 12px 14px; }
+  .ccm-bar-note { display: none; }
+  .ccm-bar-actions { flex: 1; }
+  .ccm-bar-btn { flex: 1; text-align: center; padding: 13px 12px; }
+}
+
+@media (max-width: 460px) {
+  .ccm-bar-grid { grid-template-columns: 1fr; }
+  .ccm-title { font-size: clamp(38px, 10vw, 52px); }
+}
+
+/* reduced motion: order bar sits in flow, no fixed overlays, no slide-in */
+@media (prefers-reduced-motion: reduce) {
+  .ccm-root { transform: none; }
+  .ccm-bar { position: static; transform: none; box-shadow: none; }
+}
