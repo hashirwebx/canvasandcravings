@@ -472,7 +472,7 @@ export default function CanvasCravingsMenu() {
 
       <header className="ccm-head" ref={headerRef}>
         <div className="ccm-top">
-          <a className="ccm-mark" href="#/" data-cursor="view">C&amp;C</a>
+          <a className="ccm-mark" href="#/" data-cursor="view"><img className="ccm-logo" src="/logo.png" alt="Canvas & Cravings" /></a>
           <a className="ccm-home" href="#/" data-cursor="view">Back to the café →</a>
         </div>
         <div className="ccm-wrap">

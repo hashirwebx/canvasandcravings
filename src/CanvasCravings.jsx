@@ -745,7 +745,7 @@ export default function CanvasCravings() {
       </div>
 
       <nav className="cc-nav" ref={navRef}>
-        <a className="cc-nav-mark" href="#top" data-cursor="view">C&amp;C</a>
+        <a className="cc-nav-mark" href="#top" data-cursor="view"><img className="cc-nav-logo" src="/logo.png" alt="Canvas & Cravings" /></a>
         <div className="cc-nav-right">
           <a href="#/menu" data-cursor="view"><span className="cc-nav-link-text">Menu</span><span className="cc-nav-dot" aria-hidden="true" /></a>
           <a href="#ritual" data-cursor="view"><span className="cc-nav-link-text">Ritual</span><span className="cc-nav-dot" aria-hidden="true" /></a>

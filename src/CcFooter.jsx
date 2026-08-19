@@ -7,13 +7,13 @@ export default function CcFooter({ onTop }) {
   return (
     <footer className="cc-footer" id="visit">
       {/* large background C&C mark */}
-      <div className="cc-foot-bg-mark" aria-hidden="true">C&C</div>
+      {/* <img className="cc-foot-bg-mark" src="/logo.png" alt="" aria-hidden="true" /> */}
 
       <div className="cc-wrap">
         {/* main brand area */}
         <div className="cc-foot-top">
           <div className="cc-foot-brand">
-            <span className="cc-foot-logo">C&C</span>
+            <img className="cc-foot-logo" src="/logo.png" alt="Canvas & Cravings" />
             <span className="cc-foot-tagline">Eat • Paint • Repeat</span>
           </div>
         </div>
@@ -22,11 +22,11 @@ export default function CcFooter({ onTop }) {
         <div className="cc-foot-grid">
           <div className="cc-foot-col">
             <h5>Navigation</h5>
-            <a href="#hero" data-cursor="view">Home</a>
-            <a href="#ritual" data-cursor="view">The Ritual</a>
-            <a href="#cravings" data-cursor="view">The Cravings</a>
-            <a href="#gallery" data-cursor="view">The Walls</a>
-            <a href="#canvas" data-cursor="view">From Our Canvas</a>
+            <a href="#/" data-cursor="view">Home</a>
+            <a href="#/" data-cursor="view">The Ritual</a>
+            <a href="#/menu" data-cursor="view">Menu</a>
+            <a href="#/" data-cursor="view">The Walls</a>
+            <a href="#/" data-cursor="view">From Our Canvas</a>
           </div>
           <div className="cc-foot-col">
             <h5>Contact</h5>

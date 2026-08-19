@@ -13,12 +13,10 @@
   position: absolute;
   top: 50%; left: 50%;
   transform: translate(-50%, -50%);
-  font-family: "Bagel Fat One";
-  font-size: clamp(200px, 30vw, 500px);
-  font-weight: 400;
-  color: rgba(15, 61, 30, 0.03);
+  width: clamp(300px, 40vw, 600px);
+  height: auto;
+  opacity: 0.04;
   pointer-events: none;
-  white-space: nowrap;
   user-select: none;
 }
 
@@ -32,9 +30,10 @@
   display: flex; flex-direction: column; gap: 6px;
 }
 .cc-foot-logo {
-  font-family: "Bagel Fat One";
-  font-size: 36px; font-weight: 400;
-  line-height: 1;
+
+  height: auto;
+  width: 200px;
+ 
 }
 .cc-foot-tagline {
   font-size: 12px; font-weight: 700;
@@ -138,5 +137,5 @@
 
 @media (max-width: 460px) {
   .cc-foot-grid { grid-template-columns: 1fr; gap: 24px; }
-  .cc-foot-bg-mark { font-size: 140px; }
+  .cc-foot-bg-mark { width: 200px; }
 }

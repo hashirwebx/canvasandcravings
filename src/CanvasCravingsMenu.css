@@ -103,10 +103,15 @@ html.lenis body { height: auto; }
   padding: 0 48px; margin-bottom: 60px;
 }
 .ccm-mark {
-  font-family: "Bagel Fat One"; font-size: 20px;
-  transition: color 0.3s ease;
+  display: flex; align-items: center;
+  transition: opacity 0.3s ease;
 }
-.ccm-mark:hover { color: var(--orange); }
+.ccm-logo {
+  height: 38px; width: auto;
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.ccm-mark:hover { opacity: 0.85; }
+.ccm-mark:hover .ccm-logo { transform: scale(1.04); }
 .ccm-home {
   font-size: 12px; font-weight: 600; text-transform: uppercase;
   letter-spacing: 0.16em; opacity: 0.7;

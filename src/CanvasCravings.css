@@ -171,11 +171,17 @@ html.lenis body { height: auto; }
 }
 /* logo */
 .cc-nav-mark {
-  font-family: "Bagel Fat One"; font-size: 20px; letter-spacing: 0.02em;
+  display: flex; align-items: center;
   transition: opacity 0.3s ease, transform 0.3s ease;
   flex-shrink: 0;
 }
-.cc-nav-mark:hover { opacity: 0.8; }
+.cc-nav-logo {
+  height: 70px; width: auto;
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.cc-nav.cc-scrolled .cc-nav-logo { height: 70px; }
+.cc-nav-mark:hover { opacity: 0.85; }
+.cc-nav-mark:hover .cc-nav-logo { transform: scale(1.04); }
 /* nav links */
 .cc-nav-right { display: flex; align-items: center; gap: 6px; }
 .cc-nav-right > a {
@@ -1811,7 +1817,7 @@ html.lenis body { height: auto; }
   .cc-wrap { padding: 0 16px; }
   .cc-nav { width: min(96%, 360px); padding: 10px 14px; top: 10px; }
   .cc-nav.cc-scrolled { padding: 8px 14px; }
-  .cc-nav-mark { font-size: 18px; }
+  .cc-nav-logo { height: 30px; }
   .cc-nav-right > a:not(.cc-nav-book) { display: none; }
   .cc-nav-book { display: none; }
   .cc-burger { display: flex; }
