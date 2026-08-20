@@ -361,6 +361,39 @@ html.lenis body { height: auto; }
 @media (max-width: 460px) {
   .ccm-bar-grid { grid-template-columns: 1fr; }
   .ccm-title { font-size: clamp(38px, 10vw, 52px); }
+  .ccm-name { font-size: clamp(18px, 4vw, 28px); }
+  .ccm-price { font-size: clamp(14px, 3.5vw, 18px); }
+  .ccm-sec { padding: 68px 0 56px; }
+  .ccm-row { padding: 20px 0; }
+  .ccm-desc { font-size: 12px; }
+  .ccm-pill { padding: 8px 12px; font-size: 11px; }
+  .ccm-bar { padding: 10px 12px; }
+  .ccm-bar-btn { font-size: 11px; padding: 12px 10px; min-height: 44px; }
+}
+
+@media (max-width: 390px) {
+  .ccm-wrap { padding: 0 16px; }
+  .ccm-top { padding: 0 16px; margin-bottom: 40px; }
+  .ccm-head { padding: 100px 0 48px; }
+  .ccm-title { font-size: clamp(32px, 10vw, 48px); }
+  .ccm-eyebrow { font-size: 11px; margin-bottom: 20px; }
+  .ccm-meta { font-size: 11px; }
+  .ccm-sec { padding: 60px 0 48px; }
+  .ccm-sec-head { margin-bottom: 32px; }
+  .ccm-cat { font-size: clamp(36px, 8vw, 72px); }
+  .ccm-name { font-size: clamp(16px, 4vw, 24px); }
+  .ccm-bar-item { font-size: 12px; }
+}
+
+@media (max-width: 320px) {
+  .ccm-wrap { padding: 0 14px; }
+  .ccm-top { padding: 0 14px; }
+  .ccm-title { font-size: clamp(28px, 10vw, 42px); }
+  .ccm-nav { padding: 10px 10px; }
+  .ccm-pill { padding: 7px 10px; font-size: 10px; }
+  .ccm-sec { padding: 52px 0 40px; }
+  .ccm-row { padding: 16px 0; }
+  .ccm-name { font-size: clamp(15px, 4vw, 22px); }
 }
 
 /* reduced motion: order bar sits in flow, no fixed overlays, no slide-in */

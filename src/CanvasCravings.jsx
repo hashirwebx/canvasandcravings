@@ -175,8 +175,10 @@ export default function CanvasCravings() {
       const mm = gsap.matchMedia();
 
       /* ---- Lenis smooth scroll, wired into GSAP's ticker (canonical setup) ---- */
+      const isMobile = window.matchMedia("(max-width: 820px)").matches;
       const lenis = new Lenis({
-        duration: 1.1,
+        duration: isMobile ? 0.7 : 1.1,
+        touchMultiplier: isMobile ? 2 : 1,
         stopInertiaOnNavigate: true,
       });
       lenisRef.current = lenis;
@@ -197,6 +199,18 @@ export default function CanvasCravings() {
         lenis.scrollTo(href, { duration: 1.5 });
       };
       document.addEventListener("click", onNavClick);
+
+      /* ---- resize: refresh ScrollTrigger positions after layout changes ---- */
+      let resizeTimer;
+      const onResize = () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {
+          if (alive) {
+            ScrollTrigger.refresh();
+          }
+        }, 200);
+      };
+      window.addEventListener("resize", onResize);
 
       /* ------------------------------ full experience ------------------------------ */
       mm.add("(prefers-reduced-motion: no-preference)", () => {
@@ -708,6 +722,8 @@ export default function CanvasCravings() {
 
     return () => {
       alive = false;
+      clearTimeout(resizeTimer);
+      window.removeEventListener("resize", onResize);
       if (onNavClick) document.removeEventListener("click", onNavClick);
       /* kill marquee tweens that may have escaped ctx scope (async fonts.ready rebuilds) */
       if (tickerRef.current) gsap.killTweensOf(tickerRef.current);
@@ -961,7 +977,7 @@ export default function CanvasCravings() {
         </div>
       </section>
 
-      <section className="cc-h-gallery" id="gallery" ref={galleryRef}>
+      <section className="cc-h-gallery" id="gallery" ref={galleryRef} data-lenis-prevent="horizontal">
         <span className="cc-h-bg" aria-hidden="true">Walls</span>
         <div className="cc-gal-head">
           <span className="cc-gal-label">The Walls — keep scrolling</span>
